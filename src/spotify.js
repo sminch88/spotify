@@ -141,7 +141,41 @@ export default class Spotify extends Component {
                     </Collapse>
                   </div>
 
+                  <div className="artist">
+                    <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>Top Artist</Button>
+                    <Collapse isOpen={this.state.collapse}>
+                          <div className="top_tracks">
 
+                            <Table dark>
+                              <thead>
+                                <tr>
+                                  <th>#</th>
+                                  <th>IDuration</th>
+                                  <th>Name</th>
+                                  <th>Artist</th>
+                                  <th>Album</th>
+                                  <th>Play</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+
+                                {data.me.top_tracks.map((item, idx) =>
+                                  <tr>
+                                    <td scope="row"><div>{idx + 1}</div></td>
+
+                                    <td> <div>{shortEnglishHumanizer(item.duration_ms)}</div></td>
+                                    <td><div>{item.name}</div></td>
+                                    <td><div>{item.artists[0].name}</div></td>
+                                    <td><div>{item.album.name}</div></td>
+                                    <td><div><a href={item.preview_url}><FontAwesomeIcon icon="play" /><i class="fas fa-play"></i></a></div></td>
+                                  </tr>
+                                )}
+                              </tbody>
+                            </Table>
+                          </div>
+                        
+                    </Collapse>
+                  </div>
                 </div>
                 }
                 
